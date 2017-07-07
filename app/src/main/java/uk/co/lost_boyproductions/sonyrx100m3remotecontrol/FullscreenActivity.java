@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import static uk.co.lost_boyproductions.sonyrx100m3remotecontrol.R.id.action_settings;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -180,7 +182,7 @@ public class FullscreenActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case action_settings:
                 // User chose the "Settings" item, show the app settings UI...
         /* SIMON
          * Start of code extract from https://stackoverflow.com/questions/32411898/how-to-set-up-settings-activity-in-android-studio
