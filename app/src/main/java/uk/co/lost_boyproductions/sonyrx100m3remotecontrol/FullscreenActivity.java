@@ -118,6 +118,10 @@ public class FullscreenActivity extends AppCompatActivity {
         lensZoom=(SeekBar)findViewById(R.id.lensZoom);
 //        lensZoom.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener) this);
         lensZoom.setOnTouchListener(mDelayHideTouchListener);
+
+//        Intent intent = new Intent(this, SettingsActivity.class);
+//        startActivity(intent);
+
     }
 
     @Override
@@ -178,9 +182,14 @@ public class FullscreenActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
-
+        /* SIMON
+         * Start of code extract from https://stackoverflow.com/questions/32411898/how-to-set-up-settings-activity-in-android-studio
+         */
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
+        /* SIMON
+         * End of code extract from https://stackoverflow.com/questions/32411898/how-to-set-up-settings-activity-in-android-studio
+         */
 
                 return true;
 
