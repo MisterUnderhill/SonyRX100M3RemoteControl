@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 
 import static uk.co.lost_boyproductions.sonyrx100m3remotecontrol.R.id.action_settings;
+import static uk.co.lost_boyproductions.sonyrx100m3remotecontrol.R.menu.actionbar;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -177,6 +179,12 @@ public class FullscreenActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(actionbar, menu);
+        return true;
     }
 
     @Override
