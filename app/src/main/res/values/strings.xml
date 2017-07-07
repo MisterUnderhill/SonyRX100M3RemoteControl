@@ -9,6 +9,19 @@
 
     <string name="action_settings">Camera Settings</string>
 
+    <!-- Settings related to Shoot mode -->
+    <string name="pref_title_shoot_mode">Shoot Mode</string>
+    <string-array name="pref_shoot_mode_values">
+        <item>still</item>
+        <item>movie</item>
+        <item>audio</item>
+        <item>intervalstill</item>
+        <item>looprec</item>
+    </string-array>
+
+
+
+
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
 

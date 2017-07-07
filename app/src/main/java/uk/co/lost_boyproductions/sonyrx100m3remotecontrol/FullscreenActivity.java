@@ -123,9 +123,6 @@ public class FullscreenActivity extends AppCompatActivity {
 //        lensZoom.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener) this);
         lensZoom.setOnTouchListener(mDelayHideTouchListener);
 
-//        Intent intent = new Intent(this, SettingsActivity.class);
-//        startActivity(intent);
-
     }
 
     @Override
