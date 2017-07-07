@@ -121,9 +121,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         super.onCreate(savedInstanceState);
         setupActionBar();
 
-        /* SIMON
-         * code extract from https://stackoverflow.com/questions/32411898/how-to-set-up-settings-activity-in-android-studio
-         */
+/* SIMON
+ * Start of code extract from https://stackoverflow.com/questions/32411898/how-to-set-up-settings-activity-in-android-studio
+ */
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new SettingsFragment())
                 .commit();
@@ -137,9 +137,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             addPreferencesFromResource(R.xml.pref_general);
         }
     }
-    /* SIMON
-    * End of code extract from https://stackoverflow.com/questions/32411898/how-to-set-up-settings-activity-in-android-studio
-    */
+
+/* SIMON
+ * End of code extract from https://stackoverflow.com/questions/32411898/how-to-set-up-settings-activity-in-android-studio
+ */
 
 
     /**
