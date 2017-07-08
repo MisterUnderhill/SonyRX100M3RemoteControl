@@ -2,10 +2,38 @@
 
     <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
 
-    <ListPreference
-        android:defaultValue="1"
-        android:entries="@array/pref_shoot_mode_values"
-        android:entryValues="@array/pref_shoot_mode_values"
-        android:key="list_preference_1"
-        android:title="@string/pref_title_shoot_mode" />
+    <PreferenceCategory android:title="Preference category">
+        <ListPreference
+            android:defaultValue="@string/pref_default_shoot_mode"
+            android:entries="@array/pref_shoot_mode_titles"
+            android:entryValues="@array/pref_shoot_mode_values"
+            android:key="list_preference_1"
+            android:summary="Select your shot mode"
+            android:title="@string/pref_title_shoot_mode" />
+        <ListPreference
+            android:defaultValue="@string/pref_default_zoom_settings"
+            android:entries="@array/pref_zoom_settings_titles"
+            android:entryValues="@array/pref_zoom_settings_values"
+            android:key="list_preference_1"
+            android:title="@string/pref_title_zoom_settings" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="Continuous Shooting">
+        <ListPreference
+            android:defaultValue="@string/pref_default_continuous_shooting"
+            android:entries="@array/pref_continuous_shooting_titles"
+            android:entryValues="@array/pref_continuous_shooting_values"
+            android:key="list_preference_1"
+            android:title="@string/pref_title_continuous_shooting" />
+        <ListPreference
+            android:defaultValue="@string/pref_default_continuous_shooting_speed"
+            android:entries="@string/pref_continuous_shooting_speed_titles"
+            android:entryValues="@string/pref_continuous_shooting_speed_values"
+            android:key="list_preference_1"
+            android:title="@string/pref_title_continuous_shooting_speed" />
+    </PreferenceCategory>
+
+
 </PreferenceScreen>
