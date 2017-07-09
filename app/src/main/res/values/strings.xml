@@ -12,6 +12,7 @@
     <!-- Settings related to Shoot mode parameter -->
     <string name="pref_title_shoot_mode">Shoot Mode</string>
     <string name="pref_default_shoot_mode">movie</string>
+    <string name="pref_summary_shoot_mode">Select your shot mode</string>
     <string-array name="pref_shoot_mode_titles">
         <item>Still image shoot mode</item>
         <item>Movie shoot mode</item>
@@ -30,6 +31,8 @@
     <!-- Settings related to Zoom setting parameter -->
     <string name="pref_title_zoom_settings">Zoom setting</string>
     <string name="pref_default_zoom_settings">On:Clear Image Zoom</string>
+    <string name="pref_summary_zoom_settings">Sets whether to use the Clear Image Zoom and Digital
+Zoom when zooming</string>
     <string-array name="pref_zoom_settings_titles">
         <item>Optical zoom only</item>
         <item>Smart zoom only</item>
@@ -48,6 +51,7 @@
     <!-- Settings related to Continuous shooting speed parameter -->
     <string name="pref_title_continuous_shooting_speed">Continuous shooting speed</string>
     <string name="pref_default_continuous_shooting_speed">5fps 2sec</string>
+    <string name="pref_summary_continuous_shooting_speed">Select your speed</string>
     <string-array name="pref_continuous_shooting_speed_titles">
         <item>Hi</item>
         <item>Low</item>
@@ -69,6 +73,7 @@
     <!-- Settings related to Continuous shooting mode parameter -->
     <string name="pref_title_continuous_shooting">Continuous shooting</string>
     <string name="pref_default_continuous_shooting">MotionShot</string>
+    <string name="pref_summary_continuous_shooting">Select your shoot mode</string>
     <string-array name="pref_continuous_shooting_titles">
         <item>Single shooting</item>
         <item>Continuous shooting</item>
