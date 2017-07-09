@@ -29,13 +29,13 @@
 
     <!-- Settings related to Zoom setting parameter -->
     <string name="pref_title_zoom_settings">Zoom setting</string>
-    <string name="pref_default_zoom_settings">Optical Zoom Only</string>
+    <string name="pref_default_zoom_settings">On:Clear Image Zoom</string>
     <string-array name="pref_zoom_settings_titles">
         <item>Optical zoom only</item>
         <item>Smart zoom only</item>
-        <item>On:Clear Image Zoom</item>
-        <item>On:Digital Zoom</item>
-        <item>Off:Digital Zoom</item>
+        <item>On: Clear Image Zoom</item>
+        <item>On: Digital Zoom</item>
+        <item>Off: Digital Zoom</item>
     </string-array>
     <string-array name="pref_zoom_settings_values">
         <item>Optical Zoom Only</item>
@@ -45,27 +45,9 @@
         <item>Off:Digital Zoom</item>
     </string-array>
 
-    <!-- Settings related to Continuous shooting mode parameter -->
-    <string name="pref_title_continuous_shooting">Continuous shooting</string>
-    <string name="pref_default_continuous_shooting">Single</string>
-    <string-array name="pref_continuous_shooting_titles">
-        <item>Single shooting</item>
-        <item>Continuous shooting</item>
-        <item>Speed priority continuous shooing</item>
-        <item>Burst shooting</item>
-        <item>Motion shot</item>
-    </string-array>
-    <string-array name="pref_continuous_shooting_values">
-        <item>Single</item>
-        <item>Continuous</item>
-        <item>Spd Priority Cont.</item>
-        <item>Burst</item>
-        <item>MotionShot</item>
-    </string-array>
-
     <!-- Settings related to Continuous shooting speed parameter -->
     <string name="pref_title_continuous_shooting_speed">Continuous shooting speed</string>
-    <string name="pref_default_continuous_shooting_speed">Hi</string>
+    <string name="pref_default_continuous_shooting_speed">5fps 2sec</string>
     <string-array name="pref_continuous_shooting_speed_titles">
         <item>Hi</item>
         <item>Low</item>
@@ -84,6 +66,26 @@
     </string-array>
 
 
+    <!-- Settings related to Continuous shooting mode parameter -->
+    <string name="pref_title_continuous_shooting">Continuous shooting</string>
+    <string name="pref_default_continuous_shooting">MotionShot</string>
+    <string-array name="pref_continuous_shooting_titles">
+        <item>Single shooting</item>
+        <item>Continuous shooting</item>
+        <item>Speed priority continuous shooting</item>
+        <item>Burst shooting</item>
+        <item>Motion shot</item>
+    </string-array>
+    <string-array name="pref_continuous_shooting_values">
+        <item>Single</item>
+        <item>Continuous</item>
+        <item>Spd Priority Cont.</item>
+        <item>Burst</item>
+        <item>MotionShot</item>
+    </string-array>
+
+
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
+
 </resources>
