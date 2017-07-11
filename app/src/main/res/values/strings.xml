@@ -48,6 +48,7 @@ Zoom when zooming</string>
         <item>Off:Digital Zoom</item>
     </string-array>
 
+
     <!-- Settings related to Continuous shooting speed parameter -->
     <string name="pref_title_continuous_shooting_speed">Continuous shooting speed</string>
     <string name="pref_default_continuous_shooting_speed">5fps 2sec</string>
@@ -72,7 +73,7 @@ Zoom when zooming</string>
 
     <!-- Settings related to Continuous shooting mode parameter -->
     <string name="pref_title_continuous_shooting">Continuous shooting</string>
-    <string name="pref_default_continuous_shooting">MotionShot</string>
+    <string name="pref_default_continuous_shooting">Single</string>
     <string name="pref_dialog_continuous_shooting">Select your shoot mode</string>
     <string-array name="pref_continuous_shooting_titles">
         <item>Single shooting</item>
@@ -88,6 +89,87 @@ Zoom when zooming</string>
         <item>Burst</item>
         <item>MotionShot</item>
     </string-array>
+
+
+    <!-- Settings related to Self-timer parameters -->
+    <string name="pref_title_self_timer">Self-timer parameters</string>
+    <string name="pref_default_self_timer">0</string>
+    <string name="pref_dialog_self_timer">Select your shoot mode</string>
+    <string-array name="pref_self_timer_titles">
+        <item>Off</item>
+        <item>2 Seconds</item>
+        <item>10 Seconds</item>
+    </string-array>
+    <string-array name="pref_self_timer_values">
+        <item>0</item>
+        <item>2</item>
+        <item>10</item>
+    </string-array>
+
+
+    <!-- Settings related to Exposure mode parameter -->
+    <string name="pref_title_exposure_mode">Exposure Mode</string>
+    <string name="pref_default_exposure_mode">Program Auto</string>
+    <string name="pref_dialog_exposure_mode">Select your speed</string>
+    <string-array name="pref_exposure_mode_titles">
+        <item>Program Auto</item>
+        <item>Aperture Priority</item>
+        <item>Shutter Priority</item>
+        <item>Manual Exposure</item>
+        <item>Intelligent Auto</item>
+        <item>Superior Auto</item>
+    </string-array>
+    <string-array name="pref_exposure_mode_values">
+        <item>Program Auto</item>
+        <item>Aperture</item>
+        <item>Shutter</item>
+        <item>Manual</item>
+        <item>Intelligent Auto</item>
+        <item>Superior Auto</item>
+    </string-array>
+
+
+    <!-- Settings related to Focus mode parameter -->
+    <string name="pref_title_focus_mode">Focus Mode</string>
+    <string name="pref_default_focus_mode">AF-S</string>
+    <string name="pref_dialog_focus_mode">Select your shoot mode</string>
+    <string-array name="pref_focus_mode_titles">
+        <item>Single AF</item>
+        <item>Continuous AF</item>
+        <item>Direct Manual Focus</item>
+        <item>Manual Focus</item>
+    </string-array>
+    <string-array name="pref_focus_mode_values">
+        <item>AF-S</item>
+        <item>AF-C</item>
+        <item>DMF</item>
+        <item>MF</item>
+    </string-array>
+
+
+    <!-- Settings related to Flash mode parameter -->
+    <string name="pref_title_flash_mode">Flash mode parameter</string>
+    <string name="pref_default_flash_mode">Program Auto</string>
+    <string name="pref_dialog_flash_mode">Select your speed</string>
+    <string-array name="pref_flash_mode_titles">
+        <item>Off</item>
+        <item>Auto Flash</item>
+        <item>Forced Flash</item>
+        <item>Slow Synchro</item>
+        <item>Rear Synchro</item>
+        <item>Wireless</item>
+    </string-array>
+    <string-array name="pref_flash_mode_values">
+        <item>off</item>
+        <item>auto</item>
+        <item>on</item>
+        <item>slowSync</item>
+        <item>rearSync</item>
+        <item>wireless</item>
+    </string-array>
+
+
+
 
 
     <!-- Example General settings -->
