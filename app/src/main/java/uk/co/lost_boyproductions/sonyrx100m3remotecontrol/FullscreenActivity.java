@@ -11,7 +11,15 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import static uk.co.lost_boyproductions.sonyrx100m3remotecontrol.R.id.action_settings;
 import static uk.co.lost_boyproductions.sonyrx100m3remotecontrol.R.menu.actionbar;
@@ -123,6 +131,35 @@ public class FullscreenActivity extends AppCompatActivity {
 //        lensZoom.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener) this);
         lensZoom.setOnTouchListener(mDelayHideTouchListener);
 
+        /* SIMON
+         * Start of code extract from https://developer.android.com/training/volley/simple.html
+         */
+        final TextView mTextView = (TextView) findViewById(R.id.fullscreen_content);
+
+        RequestQueue queue = Volley.newRequestQueue(this);  // Instantiate the RequestQueue.
+
+        // Request a string response from the provided URL.
+        String url ="http://www.google.com";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    // Display the first 500 characters of the response string.
+                    mTextView.setText("Response is: "+ response.substring(0,500));
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    mTextView.setText("That didn't work!");
+                }
+            }
+        );
+
+        queue.add(stringRequest);   // Add the request to the RequestQueue.
+
+        /* SIMON
+         * End of code extract from https://developer.android.com/training/volley/simple.html
+         */
     }
 
     @Override
