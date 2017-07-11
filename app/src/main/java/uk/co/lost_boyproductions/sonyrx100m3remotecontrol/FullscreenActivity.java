@@ -2,6 +2,8 @@ package uk.co.lost_boyproductions.sonyrx100m3remotecontrol;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.nsd.NsdManager;
+import android.net.nsd.NsdServiceInfo;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,15 +26,20 @@ import com.android.volley.toolbox.Volley;
 import static uk.co.lost_boyproductions.sonyrx100m3remotecontrol.R.id.action_settings;
 import static uk.co.lost_boyproductions.sonyrx100m3remotecontrol.R.menu.actionbar;
 
+import uk.co.lost_boyproductions.sonyrx100m3remotecontrol.NsdHelper;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class FullscreenActivity extends AppCompatActivity {
 
+    NsdHelper mNsdHelper;
+
     SeekBar lensZoom;
     int lensZoomPosition = 50;
     int lensZoomOldPosition = 50; // set to the same value as android.progress in layout definition
+
 
 
     /**
@@ -130,11 +137,18 @@ public class FullscreenActivity extends AppCompatActivity {
         lensZoom=(SeekBar)findViewById(R.id.lensZoom);
 //        lensZoom.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener) this);
         lensZoom.setOnTouchListener(mDelayHideTouchListener);
+        final TextView mTextView = (TextView) findViewById(R.id.fullscreen_content);
+
+        /* SIMON
+         * End of code extract to perform network discovery of SSDP devices
+         */
+        mNsdHelper = new NsdHelper(this);
+        mNsdHelper.initializeNsd();
+        mNsdHelper.discoverServices();
 
         /* SIMON
          * Start of code extract from https://developer.android.com/training/volley/simple.html
          */
-        final TextView mTextView = (TextView) findViewById(R.id.fullscreen_content);
 
         RequestQueue queue = Volley.newRequestQueue(this);  // Instantiate the RequestQueue.
 
@@ -145,7 +159,7 @@ public class FullscreenActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     // Display the first 500 characters of the response string.
-                    mTextView.setText("Response is: "+ response.substring(0,500));
+                    mTextView.append("Response is: \n\n"+ response.substring(0,10000));
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -269,5 +283,6 @@ public class FullscreenActivity extends AppCompatActivity {
         lensZoomOldPosition = lensZoomPosition;
 //        Toast.makeText(getApplicationContext(),"seekbar touch stopped!", Toast.LENGTH_SHORT).show();
     }
+
 
 }
