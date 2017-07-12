@@ -1,7 +1,11 @@
 package uk.co.lost_boyproductions.sonyrx100m3remotecontrol;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.net.DhcpInfo;
+import android.net.wifi.WifiManager;
+import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +24,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
 
 import static uk.co.lost_boyproductions.sonyrx100m3remotecontrol.R.id.action_settings;
 import static uk.co.lost_boyproductions.sonyrx100m3remotecontrol.R.menu.actionbar;
@@ -114,7 +123,7 @@ public class FullscreenActivity extends AppCompatActivity {
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
-
+        final TextView mTextView = (TextView) findViewById(R.id.fullscreen_content);
 
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
@@ -132,9 +141,53 @@ public class FullscreenActivity extends AppCompatActivity {
         lensZoom.setOnTouchListener(mDelayHideTouchListener);
 
         /* SIMON
+         * Start of code extract from http://www.milosev.com/83-android/485-simple-service-discovery-protocol.html
+         */
+
+        final String DISCOVER_MESSAGE = "M-SEARCH * HTTP/1.1\r\n"
+                + "HOST: 239.255.255.250:1900\r\n" + "MAN: \"ssdp:discover\"\r\n"
+                + "MX: 3\r\n" + "ST: urn:schemas-sony-com:service:ScalarWebAPI:1\r\n"
+                + "USER-AGENT: OS/version product/version";
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        try {
+            MulticastSocket s = new MulticastSocket(1900);
+            s.joinGroup(InetAddress.getByName("239.255.255.250") );
+            DatagramPacket packet = new DatagramPacket(DISCOVER_MESSAGE.getBytes(), DISCOVER_MESSAGE.length(), getBroadcastAddress(), 1900);
+            s.setBroadcast(true);
+            s.send(packet);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            MulticastSocket s = new MulticastSocket(1900);
+            s.joinGroup(InetAddress.getByName("239.255.255.250") );
+            DatagramPacket packet = new DatagramPacket(DISCOVER_MESSAGE.getBytes(), DISCOVER_MESSAGE.length(), getBroadcastAddress(), 1900);
+            s.setBroadcast(true);
+            s.setSoTimeout(10000); // Wait 10 seconds for a response
+
+            while(true) {
+                byte[] buf = new byte[1024];
+                DatagramPacket receivePacket = new DatagramPacket(buf, buf.length);
+
+                s.receive(receivePacket);
+                String msg = new String(receivePacket.getData(), 0, receivePacket.getLength());
+                mTextView.setText("SSDP Response : " + msg.substring(0,receivePacket.getLength()) + "\n\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        /* SIMON
+         * End of code extract from http://www.milosev.com/83-android/485-simple-service-discovery-protocol.html
+         */
+
+        /* SIMON
          * Start of code extract from https://developer.android.com/training/volley/simple.html
          */
-        final TextView mTextView = (TextView) findViewById(R.id.fullscreen_content);
 
         RequestQueue queue = Volley.newRequestQueue(this);  // Instantiate the RequestQueue.
 
@@ -145,7 +198,7 @@ public class FullscreenActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     // Display the first 500 characters of the response string.
-                    mTextView.setText("Response is: "+ response.substring(0,500));
+                    mTextView.append("\n\nVolley is : "+ response.substring(0,500));
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -161,6 +214,21 @@ public class FullscreenActivity extends AppCompatActivity {
          * End of code extract from https://developer.android.com/training/volley/simple.html
          */
     }
+
+    InetAddress getBroadcastAddress() throws IOException {
+
+        Context mContext = getApplicationContext();
+        WifiManager wifi = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
+        DhcpInfo dhcp = wifi.getDhcpInfo();
+        // handle null somehow
+
+        int broadcast = (dhcp.ipAddress & dhcp.netmask) | ~dhcp.netmask;
+        byte[] quads = new byte[4];
+        for (int k = 0; k < 4; k++)
+            quads[k] = (byte) ((broadcast >> k * 8) & 0xFF);
+        return InetAddress.getByAddress(quads);
+    }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
