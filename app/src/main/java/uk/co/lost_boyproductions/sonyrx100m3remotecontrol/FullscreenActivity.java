@@ -145,13 +145,20 @@ public class FullscreenActivity extends AppCompatActivity {
          */
 
         final String DISCOVER_MESSAGE = "M-SEARCH * HTTP/1.1\r\n"
-                + "HOST: 239.255.255.250:1900\r\n" + "MAN: \"ssdp:discover\"\r\n"
-                + "MX: 3\r\n" + "ST: urn:schemas-sony-com:service:ScalarWebAPI:1\r\n"
-                + "USER-AGENT: OS/version product/version";
+                + "Host: 239.255.255.250:1900\r\n"
+                + "Man: \"ssdp:discover\"\r\n"
+//                + "ST: ssdp:all\r\n"
+//                + "urn:schemas-upnp-org:device:DimmableLight:1\r\n"
+                + "ST: urn:schemas-sony-com:service:ScalarWebAPI:1\r\n"
+//                + "ST: urn:dial-multiscreen-org:service:dial:1"
+//                + "USER-AGENT: OS/version product/version"
+                + "MX: 1\r\n"
+                + "\r\n";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+/*  Commented out as it doesn't work in emulators
         try {
             MulticastSocket s = new MulticastSocket(1900);
             s.joinGroup(InetAddress.getByName("239.255.255.250") );
@@ -161,26 +168,25 @@ public class FullscreenActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         try {
             MulticastSocket s = new MulticastSocket(1900);
             s.joinGroup(InetAddress.getByName("239.255.255.250") );
             DatagramPacket packet = new DatagramPacket(DISCOVER_MESSAGE.getBytes(), DISCOVER_MESSAGE.length(), getBroadcastAddress(), 1900);
             s.setBroadcast(true);
             s.setSoTimeout(10000); // Wait 10 seconds for a response
-
+            mTextView.setText("SSDP Response : ");
             while(true) {
                 byte[] buf = new byte[1024];
                 DatagramPacket receivePacket = new DatagramPacket(buf, buf.length);
 
                 s.receive(receivePacket);
                 String msg = new String(receivePacket.getData(), 0, receivePacket.getLength());
-                mTextView.setText("SSDP Response : " + msg.substring(0,receivePacket.getLength()) + "\n\n");
+                mTextView.append(msg.substring(0,receivePacket.getLength()) + "\n\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+*/
         /* SIMON
          * End of code extract from http://www.milosev.com/83-android/485-simple-service-discovery-protocol.html
          */
@@ -192,13 +198,17 @@ public class FullscreenActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);  // Instantiate the RequestQueue.
 
         // Request a string response from the provided URL.
-        String url ="http://www.google.com";
+
+//        String url ="http://192.168.122.1:8080/sony/camera </av:X_ScalarWebAPI_DeviceInfo xmlns:av=\"urn:schemas-sony-com:av\">";    // Doesn't Work
+        String url ="http://192.168.122.1:64321/scalarwebapi_dd.xml";     // Works!
+//        String url ="http://192.168.122.1:64321/dd.xml";                  // Doesn't work
+//        String url ="http://www.google.com";                              // Works!
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     // Display the first 500 characters of the response string.
-                    mTextView.append("\n\nVolley is : "+ response.substring(0,500));
+                    mTextView.append("\n\nVolley is : "+ response);
                 }
             }, new Response.ErrorListener() {
                 @Override
